@@ -12,17 +12,6 @@ export const tokens = {
       900: "#242427",
     },
     primary: {
-      // // light green
-      // 100: "#d0fcf4",
-      // 200: "#a0f9e9",
-      // 300: "#71f5de",
-      // 400: "#41f2d3",
-      // 500: "#12efc8",
-      // 600: "#0ebfa0",
-      // 700: "#0b8f78",
-      // 800: "#076050",
-      // 900: "#043028",
-      // purple:
         100: "#e7dbfe",
         200: "#cfb7fd",
         300: "#b692fb",
@@ -61,19 +50,19 @@ export const tokens = {
     palette: {
       primary: {
         ...tokens.primary,
-        main: tokens.primary[500],
+        main: tokens.primary[300],
         light: tokens.primary[400],
       },
       secondary: {
         ...tokens.secondary,
-        main: tokens.secondary[500],
+        main: tokens.secondary[300],
       },
       tertiary: {
         ...tokens.tertiary,
       },
       grey: {
         ...tokens.grey,
-        main: tokens.grey[500],
+        main: tokens.grey[300],
       },
       background: {
         default: tokens.background.main,
@@ -101,18 +90,18 @@ export const tokens = {
         fontFamily: ["Inter", "sans-serif"].join(","),
         fontSize: 14,
         fontWeight: 600,
-        color: tokens.grey[300],
+        color: tokens.grey[400],
       },
       h5: {
         fontFamily: ["Inter", "sans-serif"].join(","),
         fontSize: 12,
         fontWeight: 400,
-        color: tokens.grey[500],
+        color: tokens.grey[400],
       },
       h6: {
         fontFamily: ["Inter", "sans-serif"].join(","),
         fontSize: 10,
-        color: tokens.grey[700],
+        color: tokens.grey[400],
       },
     },
   };
