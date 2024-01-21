@@ -51,7 +51,7 @@ const gridTemplateSmallScreens = `
 `
 const Dashboard = (props: Props) => {
 
-    const isAboveMediumScreen = useMediaQuery("(min-width: 1200px)")
+    const isAboveMediumScreen = useMediaQuery("(min-width:860px)")
     const {palette} = useTheme();
 
   return (
@@ -63,8 +63,8 @@ const Dashboard = (props: Props) => {
     sx={ isAboveMediumScreen? { gridTemplateColumns: "repeat(3, minmax(370, 1fr))",
          gridTemplateRows: "repeat(10, minmax(60px, 1fr))", 
          gridTemplateAreas: gridTemplateLargeScreens}
-        : { gridAutoColumns: "1fr))",
-            gridAutoRows: "", 
+        : { gridAutoColumns: "1fr",
+            gridAutoRows: "80px", 
             gridTemplateAreas: gridTemplateSmallScreens}
         } >
       
