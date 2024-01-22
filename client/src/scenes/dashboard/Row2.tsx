@@ -4,6 +4,7 @@ import FlexBetween from '@/components/FlexBetween';
 import { Box, Typography, useTheme } from "@mui/material";
 import { useMemo } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Pie, PieChart, Cell, ScatterChart, Scatter, } from 'recharts';
+// @ts-ignore
 import {GetKpisResponse, GetProductsResponse,  } from '@/state/types';
 // @ts-ignore
 import {kpis} from "@/data/kpis.js";

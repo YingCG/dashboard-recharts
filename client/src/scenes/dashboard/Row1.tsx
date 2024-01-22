@@ -1,5 +1,6 @@
 import ChartHeader from '@/components/ChartHeader';
 import DashboardBox from '@/components/DashboardBox'
+// @ts-ignore
 import { GetKpisResponse } from '@/state/types';
 import { useTheme } from "@mui/material";
 import { useMemo } from 'react'
