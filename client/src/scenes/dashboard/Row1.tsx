@@ -2,41 +2,45 @@ import ChartHeader from '@/components/ChartHeader';
 import DashboardBox from '@/components/DashboardBox'
 import { GetKpisResponse } from '@/state/types';
 import { useTheme } from "@mui/material";
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
-import {kpis} from "@/data/kpis.js";
+// @ts-ignore
+import { kpis } from "@/data/kpis.js";
 
-type Props = {}
 
 const Row1 = () => {
     const { palette } = useTheme();
     const data: GetKpisResponse[] = kpis
 
-    console.log('Row1 data:', data);
+    //console.log('Row1 data:', data);
 
     const revenueExpenses = useMemo(() => {
       return(
         data  && data[0].monthlyData.map(({month, revenue, expenses}) => {
-          console.log('revenueExpenses:', data);
+          // console.log('revenueExpenses:', data);
           return {
             name: month.substring(0, 3),
-            revenue: revenue,
-            expenses: expenses
+            revenue: parseFloat(revenue.substring(1)),
+            expenses: parseFloat(expenses.substring(1))
           }
         })
       )
 
     }, [data])
+    console.log('revenueExpenses:', revenueExpenses);
 
     const revenueProfit = useMemo(() => {
       return (
         data  && data[0].monthlyData.map(({month, revenue, expenses}) => {
-          console.log('revenueProfit:', data);
+          // console.log('revenueProfit:', data);
+
+          const revenueAsNumber = parseFloat(revenue.substring(1));
+          const expensesAsNumber = parseFloat(expenses.substring(1));
 
           return {
             name: month.substring(0, 3),
-            revenue: revenue,
-            profit: (revenue - expenses).toFixed(2),
+            revenue: revenueAsNumber,
+            profit: (revenueAsNumber - expensesAsNumber).toFixed(2),
           }
         })
       )
@@ -46,12 +50,12 @@ const Row1 = () => {
       return (
         data  &&
         data[0].monthlyData.map(({ month, revenue }) => {
-          console.log('revenue:',  data[0].monthlyData[0].month);
-          console.log('revenue:', data[0].monthlyData[0].revenue);
+          // console.log('revenue:',  data[0].monthlyData[0].month);
+          // console.log('revenue:', data[0].monthlyData[0].revenue);
 
           return {
             name: month.substring(0, 3),
-            revenue: revenue,
+            revenue: parseFloat(revenue.substring(1)),
           };
         })
       );
@@ -103,8 +107,8 @@ const Row1 = () => {
           <XAxis dataKey="name" tickLine={false} style={{ fontSize: '10px'}}/>
           <YAxis tickLine={false} axisLine={{strokeWidth: '0'}} style={{ fontSize: '10px'}} domain={[8000, 23000]}/>
           <Tooltip />
-          <Area type="monotone" dataKey="revenue" dot={true} stroke={palette.primary.main} fillOpacity={1} fill="url(#colorRevenue)" />
-          <Area type="monotone" dataKey="expenses" dot={true} stroke={palette.primary.main} fillOpacity={1} fill="url(#colorExpenses)" />
+          <Area key="revenue" type="monotone" dataKey="revenue" dot={true} stroke={palette.primary.main} fillOpacity={1} fill="url(#colorRevenue)" />
+          <Area key="expenses" type="monotone" dataKey="expenses" dot={true} stroke={palette.primary.main} fillOpacity={1} fill="url(#colorExpenses)" />
         </AreaChart>
       </ResponsiveContainer>
       </DashboardBox>

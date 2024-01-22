@@ -2,10 +2,12 @@ import ChartHeader from '@/components/ChartHeader'
 import DashboardBox from '@/components/DashboardBox'
 import FlexBetween from '@/components/FlexBetween';
 import { Box, Typography, useTheme } from "@mui/material";
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Pie, PieChart, Cell, ScatterChart, Scatter, } from 'recharts';
-import { GetKpisResponse, GetProductsResponse } from '@/state/types';
+import {GetKpisResponse, GetProductsResponse,  } from '@/state/types';
+// @ts-ignore
 import {kpis} from "@/data/kpis.js";
+// @ts-ignore
 import {products} from "@/data/products.js"
 
 const pieData = [
@@ -19,7 +21,7 @@ const Row2 = (props: Props) => {
     const data: GetKpisResponse[] = kpis
     const  productsData: GetProductsResponse[]  = products
 
-    console.log('Row2 data:', data)
+    // console.log('Row2 data:', data)
 
     const operationalExpenses = useMemo(() => {
         return(
@@ -28,8 +30,8 @@ const Row2 = (props: Props) => {
               ({ month, operationalExpenses, nonOperationalExpenses }) => {
                 return {
                   name: month.substring(0, 3),
-                  "Operational Expenses": operationalExpenses,
-                  "Non Operational Expenses": nonOperationalExpenses,
+                  "Operational Expenses": parseFloat(operationalExpenses.substring(1)),
+                  "Non Operational Expenses": parseFloat(nonOperationalExpenses.substring(1)),
                 };
               }
             )
@@ -42,8 +44,8 @@ const Row2 = (props: Props) => {
             productsData.map(({ _id, price, expense }) => {
               return {
                 id: _id,
-                price: price,
-                expense: expense,
+                price: parseFloat(price.substring(1)),
+                expense: parseFloat(expense.substring(1)),
               };
             })
           );
@@ -73,13 +75,13 @@ const Row2 = (props: Props) => {
         <DashboardBox gridArea="e">
           <ChartHeader title="Campaigns and Targets" />
           <FlexBetween >
-            <PieChart width={110} height={100}  margin={{  top: 0,  right: -10,  left: -10,  bottom: 0,  }} >
+            <PieChart width={100} height={200}  margin={{  top: 0,  right: 0,  left: 20,  bottom: 0,  }} >
               <Pie
                 stroke='none'
                 data={pieData}
                 innerRadius={18}
                 outerRadius={38}
-                paddingAngle={5}
+                paddingAngle={10}
                 dataKey="value"
               >
                 {pieData.map((entry, index) => (
@@ -87,7 +89,7 @@ const Row2 = (props: Props) => {
                 ))}
               </Pie>
             </PieChart>
-            <Box ml="-0.7rem" flexBasis="40%" textAlign="center">
+            <Box ml="-0.7rem" flexBasis="40%" textAlign="center" paddingRight="1rem">
               <Typography variant="h5">Target Sales</Typography>
               <Typography m="0.3rem 0" variant="h3" color={palette.primary[600]}>
                 83
