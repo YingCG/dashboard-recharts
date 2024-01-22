@@ -1,7 +1,6 @@
 import React from 'react'
 import FlexBetween from './FlexBetween'
 import { Box, Typography, useTheme } from '@mui/material'
-import { Margin } from '@mui/icons-material'
 
 type Props = {
     icon? : React.ReactNode;

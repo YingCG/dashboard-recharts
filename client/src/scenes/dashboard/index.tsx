@@ -1,10 +1,8 @@
 import DashboardBox from '@/components/DashboardBox'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
-import React from 'react'
 import Row1 from './Row1'
 import Row2 from './Row2'
 
-type Props = {}
 
 const gridTemplateLargeScreens = `
 "a b c"
@@ -37,7 +35,7 @@ const gridTemplateSmallScreens = `
 "f"
 
 `
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
 
     const isAboveMediumScreen = useMediaQuery("(min-width:860px)")
     const {palette} = useTheme();
