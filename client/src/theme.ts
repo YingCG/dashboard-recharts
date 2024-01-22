@@ -50,7 +50,7 @@ export const tokens = {
     palette: {
       primary: {
         ...tokens.primary,
-        main: tokens.primary[300],
+        main: tokens.primary[600],
         light: tokens.primary[400],
       },
       secondary: {

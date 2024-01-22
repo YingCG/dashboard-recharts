@@ -16,7 +16,9 @@ const pieData = [
   {name: "Group B", value: 400},
 ]
 const Row2 = () => {
+  // @ts-ignore
     const { palette } = useTheme();
+    // @ts-ignore
     const pieColors = [palette.primary[800], palette.primary[300]]
     const data: GetKpisResponse[] = kpis
     const  productsData: GetProductsResponse[]  = products
@@ -66,7 +68,7 @@ const Row2 = () => {
             <XAxis dataKey="name" tickLine={false} style={{ fontSize: '10px'}}/>
             <YAxis tickLine={false} axisLine={{strokeWidth: '0'}} style={{ fontSize: '10px'}} />
             <Tooltip />
-            <Line type="monotone" dataKey="Non-Operational Expenses" stroke={palette.tertiary[500]} activeDot={{ r: 8 }} />
+            <Line type="monotone" dataKey="Non-Operational Expenses" stroke={palette.primary.main} activeDot={{ r: 8 }} />
             <Line type="monotone" dataKey="Operational Expenses" stroke={palette.primary.main} />
         </LineChart>
         </ResponsiveContainer>
@@ -84,14 +86,14 @@ const Row2 = () => {
                 paddingAngle={10}
                 dataKey="value"
               >
-                {pieData.map((entry, index) => (
+                {pieData.map((_entry, index) => (
                   <Cell key={`cell-${index}`} fill={pieColors[index]} />
                 ))}
               </Pie>
             </PieChart>
             <Box ml="-0.7rem" flexBasis="40%" textAlign="center" paddingRight="1rem">
               <Typography variant="h5">Target Sales</Typography>
-              <Typography m="0.3rem 0" variant="h3" color={palette.primary[600]}>
+              <Typography m="0.3rem 0" variant="h3" color={palette.primary.main}>
                 83
               </Typography>
               <Typography variant="h6">
@@ -100,7 +102,8 @@ const Row2 = () => {
             </Box>
             <Box  flexBasis="40%">
               <Typography variant="h5">Loses in Revenue</Typography>
-              <Typography m="0.3rem 0" variant="h3" color={palette.primary[600]}>
+
+              <Typography m="0.3rem 0" variant="h3" color={palette.primary.main}>
                 Losses are down 25%
               </Typography>
               <Typography variant="h6">
@@ -129,7 +132,7 @@ const Row2 = () => {
           <XAxis type="number" dataKey="price" name="price" axisLine={false} style={{fontSize: "10px"}} tickFormatter={(v) => `$${v}`}/>
           <YAxis type="number"  dataKey="expense" name="expense" axisLine={false} tickLine={false} style={{fontSize: "10px"}}  tickFormatter={(v) => `$${v}`} />
           <Tooltip formatter={(v) => `$${v}`} />
-          <Scatter name="Product Expense Ratio" data={productExpenseData} fill={palette.tertiary[500]} opacity={0.7} />
+          <Scatter name="Product Expense Ratio" data={productExpenseData} fill={palette.grey[100]} />
         </ScatterChart>
       </ResponsiveContainer>
         </DashboardBox>

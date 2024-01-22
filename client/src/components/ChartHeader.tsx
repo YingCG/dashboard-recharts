@@ -19,7 +19,7 @@ const ChartHeader = ({icon, title, subtitle }: Props) => {
                 <Typography variant='h4' mb='-0.1rem' >
                     {title}
                 </Typography>
-                <Typography variant='h6' color={palette.primary[300]}>{subtitle}</Typography>
+                <Typography variant='h6' color={palette.primary.light}>{subtitle}</Typography>
             </Box>
         </FlexBetween>
      </FlexBetween>
